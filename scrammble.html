@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Scrammble</title>
+</head>
+<body>
+<h1 align="center">Guess the word Game</h1>
+<br><br><br>
+
+<div align="center" id="msg"></div>
+<div align="center"><input type="text" id="inp">
+<button id="btn">Start</button><br><br><br>
+</div>
+<div align="center"><button id="gss">Guess</button></div>
+<script>
+	const msg = document.getElementById('msg');
+	const inp = document.getElementById('inp');
+	const btn = document.getElementById('btn');
+	const gss = document.getElementById('gss');
+	let words = ['python','java','php','html','javascript','css','android','datascience','machinelearning'];
+	let newword = '';
+
+	function createwords(){
+		let ranNum = Math.floor(Math.random() * words.length);
+		let newword= words[ranNum];
+		return newword;
+	}
+	function scrammblewords(newword){
+		let abc = newword.split('');
+		let def = abc;
+		// console.log(abc)
+		// console.log(newword.length);
+		let j = Math.floor(Math.random()*newword.length);
+
+		for(let i=0;i<abc.length;i++){
+
+			let temp = abc[i]
+			abc[i] = abc[j]
+			abc[j] = temp
+		}
+		// console.log(abc.join(''));
+		return (abc.join(''));
+
+	}
+	btn.addEventListener('click',function(){
+		newword = createwords();
+		randwords = scrammblewords(newword);
+		msg.innerHTML = randwords;
+
+	});
+
+	gss.addEventListener('click',function(){
+		// console.log(inp.value)
+		// console.log(newword);
+		if(inp.value === newword){
+			alert('You have guessed correct');
+		}
+		else{
+			alert('You have guessed wrong');
+		}
+	});
+
+</script>
+
+</body>
+</html>
